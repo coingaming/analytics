@@ -167,4 +167,30 @@
   {{#if (any outbound_links file_downloads tagged_events)}}
   {{> customEvents}}
   {{/if}}
+
+  {{#if live_view}}
+    window.addEventListener('phx:navigate', info => trigger('pageview', {u: info.detail.href}))
+    
+    const events = ["phx:page-loading-start", 
+      "phx:page-loading-stop", 
+      "track-uploads", 
+      "phx:live-file:updated"
+    ];
+    events.map((name) => {
+      window.addEventListener(name, info => trigger('phx-event', {props: {event: name, detail: new URLSearchParams(info.detail || {}).toString()}}));
+    });
+
+    // input change
+    window.addEventListener("submit", e => trigger("js-submit", {props: {dom_id: e.target.id, ...Object.fromEntries(new FormData(e.target).entries())}}));
+    //// track all clicks on a page with dom id and text
+    window.addEventListener("click", e => trigger("js-click", {props: {dom_id: e.target.id, text: e.target.innerText }}))
+
+    //track socket activity
+    if (window.liveSocket)
+      window.liveSocket.socket.logger = (kind, _msg, data) => {
+        if(kind === 'push') trigger('phx-event', {props: data})
+      }
+    else
+      console && console.error("No liveSocket initialized")
+  {{/if}}
 })();
