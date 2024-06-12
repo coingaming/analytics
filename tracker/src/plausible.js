@@ -180,10 +180,8 @@
       window.addEventListener(name, info => trigger('phx-event', {props: {event: name, detail: new URLSearchParams(info.detail || {}).toString()}}));
     });
 
-    // input change
+    // form submit event
     window.addEventListener("submit", e => trigger("js-submit", {props: {dom_id: e.target.id, ...Object.fromEntries(new FormData(e.target).entries())}}));
-    //// track all clicks on a page with dom id and text
-    window.addEventListener("click", e => trigger("js-click", {props: {dom_id: e.target.id, text: e.target.innerText }}))
 
     //track socket activity
     if (window.liveSocket)
