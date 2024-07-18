@@ -170,7 +170,7 @@
 
   {{#if live_view}}
     {{#unless manual}}
-      window.addEventListener('phx:navigate', info => trigger('pageview', {u: info.detail.href}))
+      window.addEventListener('phx:navigate', info => trigger('pageview', {u: info.detail.href}));
     {{/unless}}
 
     ['phx-click', 'phx-change', 'phx-submit', 'phx-viewport-top', 'phx-viewport-bottom', 'phx-mounted', 'phx-connected', 'phx-disconnected'].map((name) => {
@@ -183,8 +183,9 @@
     //track socket activity
     if (window.liveSocket)
       window.liveSocket.socket.logger = (kind, msg, data) => {
-        console.log("FFFFFFFFFFFFF", kind, msg, data);
-        if(kind === 'push') trigger('phx-push', {props: {msg, ...data}})
+        if ((kind === 'push') && !msg.includes("phoenix heartbeat")){
+          trigger('phx-push', {props: {msg, ...data}});
+        } 
       }
     else
       console && console.error("No liveSocket initialized")
