@@ -13,6 +13,7 @@ defmodule PlausibleWeb.SiteView do
   def render_snippet(site, addons \\ []) do
     filename = Enum.join(["script"] ++ addons ++ ["js"], ".")
     src = "#{plausible_url()}/js/#{filename}"
+
     """
     <script defer data-domain="#{site.domain}" src="#{src}"></script>
     """
