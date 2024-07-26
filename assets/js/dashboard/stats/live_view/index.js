@@ -63,7 +63,7 @@ export default function LiveView(props) {
   }
 
   return (
-    <div class="w-full p-4 bg-white dark:bg-gray-825 rounded shadow-xl mt-6">
+    <div className="w-full p-4 bg-white dark:bg-gray-825 rounded shadow-xl mt-6">
       {/* Header Container */}
       <div className="w-full flex justify-between">
         <div className="flex gap-x-1">
