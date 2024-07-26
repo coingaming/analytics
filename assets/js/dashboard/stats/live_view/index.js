@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import * as storage from '../../util/storage'
 import ImportedQueryUnsupportedWarning from '../imported-query-unsupported-warning';
-import SpecialPropBreakdown from './values'
-
+import Properties from '../behaviours/props';
 
 const labelFor = {
   'phx-event': 'LiveView Events',
@@ -56,6 +55,13 @@ export default function LiveView(props) {
     )
   }
 
+  function addGoal(query, goal) {
+    return {
+      ...query,
+      filters: [['is', 'goal', [goal]]]
+    }
+  }
+
   return (
     <div class="w-full p-4 bg-white dark:bg-gray-825 rounded shadow-xl mt-6">
       {/* Header Container */}
@@ -71,7 +77,7 @@ export default function LiveView(props) {
         </div>
       </div>
       {/* Main Contents */}
-      <SpecialPropBreakdown site={site} query={props.query} prop={mode} afterFetchData={afterFetchData} />
+      <Properties site={site} query={addGoal(query, mode)} afterFetchData={afterFetchData} />
     </div>
   )
 }
