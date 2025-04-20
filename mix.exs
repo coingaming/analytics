@@ -97,7 +97,7 @@ defmodule Plausible.MixProject do
       {:mox, "~> 1.0", only: [:test, :ce_test]},
       {:nanoid, "~> 2.1.0"},
       {:nimble_totp, "~> 1.0"},
-      {:oban, "~> 2.17.0"},
+      {:oban, "~> 2.19.0"},
       {:observer_cli, "~> 1.7"},
       {:opentelemetry, "~> 1.1"},
       {:opentelemetry_api, "~> 1.1"},
