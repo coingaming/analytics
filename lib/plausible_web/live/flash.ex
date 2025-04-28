@@ -96,7 +96,7 @@ defmodule PlausibleWeb.Live.Flash do
   end
 
   slot(:icon, required: true)
-  slot(:title, require: true)
+  slot(:title, required: true)
   slot(:message, required: true)
   attr(:key, :string, default: nil)
   attr(:on_close, :any, default: "lv:clear-flash")
