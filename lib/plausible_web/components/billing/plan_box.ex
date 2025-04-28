@@ -32,7 +32,7 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
           !@highlight && "text-gray-900 dark:text-gray-100",
           @highlight && "text-indigo-600 dark:text-indigo-300"
         ]}>
-          <%= String.capitalize(to_string(@kind)) %>
+          {String.capitalize(to_string(@kind))}
         </h3>
         <.pill :if={@highlight} text={@highlight} />
       </div>
@@ -79,7 +79,7 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
         id="highlight-pill"
         class="rounded-full bg-indigo-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-indigo-600 dark:text-indigo-300 dark:ring-1 dark:ring-indigo-300/50"
       >
-        <%= @text %>
+        {@text}
       </p>
     </div>
     """
@@ -123,7 +123,7 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
       id={"#{@kind}-price-tag-amount"}
       class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
     >
-      <%= @plan_to_render.monthly_cost |> Plausible.Billing.format_price() %>
+      {@plan_to_render.monthly_cost |> Plausible.Billing.format_price()}
     </span>
     <span
       id={"#{@kind}-price-tag-interval"}
@@ -137,13 +137,13 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
   defp price_tag(%{selected_interval: :yearly} = assigns) do
     ~H"""
     <span class="text-2xl font-bold w-max tracking-tight line-through text-gray-500 dark:text-gray-600 mr-1">
-      <%= @plan_to_render.monthly_cost |> Money.mult!(12) |> Plausible.Billing.format_price() %>
+      {@plan_to_render.monthly_cost |> Money.mult!(12) |> Plausible.Billing.format_price()}
     </span>
     <span
       id={"#{@kind}-price-tag-amount"}
       class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
     >
-      <%= @plan_to_render.yearly_cost |> Plausible.Billing.format_price() %>
+      {@plan_to_render.yearly_cost |> Plausible.Billing.format_price()}
     </span>
     <span id={"#{@kind}-price-tag-interval"} class="text-sm font-semibold leading-6 text-gray-600">
       /year
@@ -218,16 +218,16 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
     >
       <%= if @exceeded_plan_limits != [] do %>
         <PlausibleWeb.Components.Generic.tooltip class="text-sm text-red-700 dark:text-red-500 mt-1 justify-center">
-          <%= @disabled_message %>
+          {@disabled_message}
           <:tooltip_content>
             Your usage exceeds the following limit(s):<br /><br />
             <p :for={limit <- @exceeded_plan_limits}>
-              <%= Phoenix.Naming.humanize(limit) %><br />
+              {Phoenix.Naming.humanize(limit)}<br />
             </p>
           </:tooltip_content>
         </PlausibleWeb.Components.Generic.tooltip>
       <% else %>
-        <%= @disabled_message %>
+        {@disabled_message}
       <% end %>
     </p>
     """
@@ -320,7 +320,7 @@ defmodule PlausibleWeb.Components.Billing.PlanBox do
         @checkout_disabled && "pointer-events-none bg-gray-400 dark:bg-gray-600"
       ]}
     >
-      <%= @change_plan_link_text %>
+      {@change_plan_link_text}
     </button>
     """
   end

@@ -62,7 +62,7 @@ defmodule PlausibleWeb.Live.Shields.IPRules do
             title="Maximum number of addresses reached"
           >
             <p>
-              You've reached the maximum number of IP addresses you can block (<%= Shields.maximum_ip_rules() %>). Please remove one before adding another.
+              You've reached the maximum number of IP addresses you can block ({Shields.maximum_ip_rules()}). Please remove one before adding another.
             </p>
           </PlausibleWeb.Components.Generic.notice>
         </div>
@@ -90,7 +90,7 @@ defmodule PlausibleWeb.Live.Shields.IPRules do
                 :if={not ip_rule_present?(@ip_rules, @remote_ip)}
                 class="text-sm text-gray-500 dark:text-gray-200 mb-4"
               >
-                Your current IP address is: <span class="font-mono"><%= @remote_ip %></span>
+                Your current IP address is: <span class="font-mono">{@remote_ip}</span>
                 <br />
                 <.styled_link phx-target={@myself} phx-click="prefill-own-ip-rule">
                   Click here
@@ -163,7 +163,7 @@ defmodule PlausibleWeb.Live.Shields.IPRules do
                         class="font-mono mr-4 cursor-help border-b border-dotted border-gray-400"
                         title={"Added at #{format_added_at(rule.inserted_at, @site.timezone)} by #{rule.added_by}"}
                       >
-                        <%= rule.inet %>
+                        {rule.inet}
                       </span>
 
                       <span
@@ -187,7 +187,7 @@ defmodule PlausibleWeb.Live.Shields.IPRules do
                   </td>
                   <td class="px-6 py-4 text-sm font-normal whitespace-nowrap truncate max-w-xs md:block hidden">
                     <span :if={rule.description} title={rule.description}>
-                      <%= rule.description %>
+                      {rule.description}
                     </span>
                     <span :if={!rule.description} class="text-gray-400 dark:text-gray-600">
                       --

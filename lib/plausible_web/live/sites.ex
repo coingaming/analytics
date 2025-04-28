@@ -110,7 +110,7 @@ defmodule PlausibleWeb.Live.Sites do
           page_number={@sites.page_number}
           total_pages={@sites.total_pages}
         >
-          Total of <span class="font-medium"><%= @sites.total_entries %></span> sites
+          Total of <span class="font-medium">{@sites.total_entries}</span> sites
         </.pagination>
         <.invitation_modal
           :if={Enum.any?(@sites.entries, &(&1.entry_type == "invitation"))}
@@ -146,11 +146,11 @@ defmodule PlausibleWeb.Live.Sites do
           </h3>
           <div class="mt-2 text-sm text-yellow-700">
             <p>
-              To access the sites you own, you need to subscribe to a monthly or yearly payment plan. <%= link(
+              To access the sites you own, you need to subscribe to a monthly or yearly payment plan. {link(
                 "Upgrade now →",
                 to: "/settings",
                 class: "text-sm font-medium text-yellow-800"
-              ) %>
+              )}
             </p>
           </div>
         </div>
@@ -180,7 +180,7 @@ defmodule PlausibleWeb.Live.Sites do
           />
           <div class="flex-1 truncate -mt-px">
             <h3 class="text-gray-900 font-medium text-lg truncate dark:text-gray-100">
-              <%= @site.domain %>
+              {@site.domain}
             </h3>
           </div>
 
@@ -226,7 +226,7 @@ defmodule PlausibleWeb.Live.Sites do
                 class="text-gray-900 font-medium text-lg truncate dark:text-gray-100"
                 style="width: calc(100% - 4rem)"
               >
-                <%= @site.domain %>
+                {@site.domain}
               </h3>
             </div>
           </div>
@@ -319,7 +319,7 @@ defmodule PlausibleWeb.Live.Sites do
           <div class="flex justify-between items-center">
             <p>
               <span class="text-gray-800 dark:text-gray-200">
-                <b><%= PlausibleWeb.StatsView.large_number_format(@hourly_stats.visitors) %></b>
+                <b>{PlausibleWeb.StatsView.large_number_format(@hourly_stats.visitors)}</b>
                 visitor<span :if={@hourly_stats.visitors != 1}>s</span> in last 24h
               </span>
             </p>
@@ -340,7 +340,7 @@ defmodule PlausibleWeb.Live.Sites do
       <span :if={@change == 0} class="font-semibold">〰</span>
       <span :if={@change > 0} class="font-semibold text-green-500">↑</span>
       <span :if={@change < 0} class="font-semibold text-red-400">↓</span>
-      <%= abs(@change) %>%
+      {abs(@change)}%
     </p>
     """
   end

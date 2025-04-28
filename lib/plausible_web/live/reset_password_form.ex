@@ -61,10 +61,10 @@ defmodule PlausibleWeb.Live.ResetPasswordForm do
         Set password →
       </PlausibleWeb.Components.Generic.button>
       <p class="text-center text-gray-500 text-xs mt-4">
-        Don't have an account? <%= link("Register",
+        Don't have an account? {link("Register",
           to: "/register",
           class: "underline text-gray-800 dark:text-gray-200"
-        ) %> instead.
+        )} instead.
       </p>
     </.form>
     """

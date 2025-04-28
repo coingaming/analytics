@@ -94,7 +94,7 @@ defmodule PlausibleWeb.Live.ImportsExportsSettings do
     </div>
 
     <p :if={@import_warning} class="mt-4 text-gray-400 text-sm italic">
-      <%= @import_warning %>
+      {@import_warning}
     </p>
 
     <header class="relative border-b border-gray-200 pb-4">
@@ -102,7 +102,7 @@ defmodule PlausibleWeb.Live.ImportsExportsSettings do
         Existing Imports
       </h3>
       <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-200">
-        A maximum of <%= @max_imports %> imports at any time is allowed.
+        A maximum of {@max_imports} imports at any time is allowed.
       </p>
     </header>
 
@@ -151,30 +151,28 @@ defmodule PlausibleWeb.Live.ImportsExportsSettings do
           Import failed -
         </div>
         <.tooltip :if={@entry.tooltip} wrapper_class={[@label_class, "grow"]} class="justify-left">
-          <%= Plausible.Imported.SiteImport.label(@entry.site_import) %>
+          {Plausible.Imported.SiteImport.label(@entry.site_import)}
           <:tooltip_content>
             <.notice_message message_label={@entry.tooltip} />
           </:tooltip_content>
         </.tooltip>
         <div :if={!@entry.tooltip} class={[@label_class]}>
-          <%= Plausible.Imported.SiteImport.label(@entry.site_import) %>
+          {Plausible.Imported.SiteImport.label(@entry.site_import)}
         </div>
         <div :if={@entry.live_status == SiteImport.completed()} class="text-xs font-normal ml-1">
-          (<%= PlausibleWeb.StatsView.large_number_format(
+          ({PlausibleWeb.StatsView.large_number_format(
             pageview_count(@entry.site_import, @pageview_counts)
-          ) %> page views)
+          )} page views)
         </div>
       </div>
       <div class="text-sm leading-5 text-gray-500 dark:text-gray-200">
-        From <%= format_date(@entry.site_import.start_date) %> to <%= format_date(
-          @entry.site_import.end_date
-        ) %>
+        From {format_date(@entry.site_import.start_date)} to {format_date(@entry.site_import.end_date)}
         <%= if @entry.live_status == SiteImport.completed() do %>
           (imported
         <% else %>
           (started
         <% end %>
-        on <%= format_date(@entry.site_import.inserted_at) %>)
+        on {format_date(@entry.site_import.inserted_at)})
       </div>
     </div>
     <.button

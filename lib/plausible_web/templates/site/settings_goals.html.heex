@@ -19,8 +19,8 @@
     site={@site}
     conn={@conn}
   >
-    <%= live_render(@conn, PlausibleWeb.Live.GoalSettings,
+    {live_render(@conn, PlausibleWeb.Live.GoalSettings,
       session: %{"site_id" => @site.id, "domain" => @site.domain}
-    ) %>
+    )}
   </PlausibleWeb.Components.Site.Feature.toggle>
 </div>

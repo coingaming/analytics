@@ -16,14 +16,14 @@
       </p>
 
       <div class="relative">
-        <%= textarea(f, :domain,
+        {textarea(f, :domain,
           id: "snippet_code",
           class:
             "transition overflow-hidden bg-gray-100 dark:bg-gray-900 appearance-none border border-transparent rounded w-full p-2 pr-6 text-gray-700 dark:text-gray-300 leading-normal appearance-none focus:outline-none focus:bg-white dark:focus:bg-gray-800 focus:border-gray-400 dark:focus:border-gray-500 text-xs mt-4 resize-none",
           value: render_snippet(@site, ["live-view"]),
           rows: 3,
           readonly: "readonly"
-        ) %>
+        )}
         <a
           onclick="var textarea = document.getElementById('snippet_code'); textarea.focus(); textarea.select(); document.execCommand('copy');"
           href="javascript:void(0)"
@@ -70,15 +70,15 @@
       else
         "Start collecting data →"
       end %>
-    <%= link(button_label,
+    {link(button_label,
       class: "button mt-4 w-full",
       to: "/#{URI.encode_www_form(@site.domain)}"
-    ) %>
+    )}
   <% end %>
 
   <%= if @is_first_site do %>
     <div class="pt-12 pl-8 hidden md:block">
-      <%= render(PlausibleWeb.AuthView, "_onboarding_steps.html", current_step: 3) %>
+      {render(PlausibleWeb.AuthView, "_onboarding_steps.html", current_step: 3)}
     </div>
   <% end %>
 </div>

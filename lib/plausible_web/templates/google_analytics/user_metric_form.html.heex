@@ -49,7 +49,7 @@
       </a>
     </p>
 
-    <%= link("Continue ->",
+    {link("Continue ->",
       to:
         Routes.google_analytics_path(@conn, :confirm, @site.domain,
           property_or_view: @property_or_view,
@@ -60,6 +60,6 @@
           end_date: @end_date
         ),
       class: "button sm:w-auto w-full"
-    ) %>
+    )}
   </div>
 </div>

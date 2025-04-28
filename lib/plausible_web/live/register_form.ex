@@ -42,7 +42,7 @@ defmodule PlausibleWeb.Live.RegisterForm do
   def render(%{invitation_expired: true} = assigns) do
     ~H"""
     <div class="mx-auto mt-6 text-center dark:text-gray-300">
-      <h1 class="text-3xl font-black"><%= Plausible.product_name() %></h1>
+      <h1 class="text-3xl font-black">{Plausible.product_name()}</h1>
       <div class="text-xl font-medium">Lightweight and privacy-friendly web analytics</div>
     </div>
 
@@ -50,11 +50,11 @@ defmodule PlausibleWeb.Live.RegisterForm do
       <h2 class="text-xl font-black dark:text-gray-100">Invitation expired</h2>
 
       <p class="mt-4 text-sm">
-        Your invitation has expired or been revoked. Please request fresh one or you can <%= link(
+        Your invitation has expired or been revoked. Please request fresh one or you can {link(
           "sign up",
           class: "text-indigo-600 hover:text-indigo-900",
           to: Routes.auth_path(@socket, :register)
-        ) %> for a 30-day unlimited free trial without an invitation.
+        )} for a 30-day unlimited free trial without an invitation.
       </p>
     </div>
     """
@@ -65,7 +65,7 @@ defmodule PlausibleWeb.Live.RegisterForm do
     <div class="mx-auto mt-6 text-center dark:text-gray-300">
       <h1 class="text-3xl font-black">
         <%= if ce?() or @live_action == :register_from_invitation_form do %>
-          Register your <%= Plausible.product_name() %> account
+          Register your {Plausible.product_name()} account
         <% else %>
           Register your 30-day free trial
         <% end %>
@@ -145,7 +145,7 @@ defmodule PlausibleWeb.Live.RegisterForm do
             </div>
             <%= if @captcha_error do %>
               <div class="text-red-500 text-xs italic mt-3" x-data x-init="hcaptcha.reset()">
-                <%= @captcha_error %>
+                {@captcha_error}
               </div>
             <% end %>
             <script
@@ -166,18 +166,18 @@ defmodule PlausibleWeb.Live.RegisterForm do
             "Start my free trial →"
           end %>
         <PlausibleWeb.Components.Generic.button id="register" type="submit" class="mt-4 w-full">
-          <%= submit_text %>
+          {submit_text}
         </PlausibleWeb.Components.Generic.button>
 
         <p class="text-center text-gray-600 dark:text-gray-500  text-xs mt-4">
-          Already have an account? <%= link("Log in",
+          Already have an account? {link("Log in",
             to: "/login",
             class: "underline text-gray-800 dark:text-gray-50"
-          ) %> instead.
+          )} instead.
         </p>
       </.form>
       <div :if={@live_action == :register_form} class="pt-12 pl-8 hidden md:block">
-        <%= PlausibleWeb.AuthView.render("_onboarding_steps.html", current_step: 0) %>
+        {PlausibleWeb.AuthView.render("_onboarding_steps.html", current_step: 0)}
       </div>
     </div>
     """

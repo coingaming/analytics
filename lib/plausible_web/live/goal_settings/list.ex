@@ -63,10 +63,10 @@ defmodule PlausibleWeb.Live.GoalSettings.List do
                     <%= if not @revenue_goals_enabled? && goal.currency do %>
                       <div class="text-gray-600 flex items-center">
                         <Heroicons.lock_closed class="w-4 h-4 mr-1 inline" />
-                        <span><%= goal %></span>
+                        <span>{goal}</span>
                       </div>
                     <% else %>
-                      <%= goal %>
+                      {goal}
                     <% end %>
                     <span class="text-sm text-gray-400 block mt-1 font-normal">
                       <span :if={goal.page_path}>Pageview</span>

@@ -34,11 +34,11 @@ defmodule PlausibleWeb.Components.Site.Feature do
             else: "text-gray-900 dark:text-gray-100"
           )
         ]}>
-          Show <%= @feature_mod.display_name() %> in the Dashboard
+          Show {@feature_mod.display_name()} in the Dashboard
         </span>
       </div>
       <div :if={@current_setting}>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </div>
     </div>
     """

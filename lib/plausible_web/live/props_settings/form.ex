@@ -47,7 +47,7 @@ defmodule PlausibleWeb.Live.PropsSettings.Form do
           phx-submit="allow-prop"
           phx-click-away="cancel-allow-prop"
         >
-          <h2 class="text-xl font-black dark:text-gray-100">Add Property for <%= @domain %></h2>
+          <h2 class="text-xl font-black dark:text-gray-100">Add Property for {@domain}</h2>
 
           <div class="py-2">
             <.label for="prop_input">
@@ -83,9 +83,9 @@ defmodule PlausibleWeb.Live.PropsSettings.Form do
             />
 
             <.error :for={{msg, opts} <- f[:allowed_event_props].errors}>
-              <%= Enum.reduce(opts, msg, fn {key, value}, acc ->
+              {Enum.reduce(opts, msg, fn {key, value}, acc ->
                 String.replace(acc, "%{#{key}}", fn _ -> to_string(value) end)
-              end) %>
+              end)}
             </.error>
           </div>
 
@@ -101,7 +101,7 @@ defmodule PlausibleWeb.Live.PropsSettings.Form do
             class="mt-2 text-sm hover:underline text-indigo-600 dark:text-indigo-400 text-left"
             phx-click="allow-existing-props"
           >
-            Already sending custom properties? Click to add <%= @prop_key_options_count %> existing properties we found.
+            Already sending custom properties? Click to add {@prop_key_options_count} existing properties we found.
           </button>
         </.form>
       </div>

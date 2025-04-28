@@ -121,7 +121,7 @@ defmodule PlausibleWeb.Live.FunnelSettings.Form do
                     Last month conversion rate: <strong><%= List.last(@evaluation_result.steps).conversion_rate %></strong>%
                   <% else %>
                     <span class="text-red-600 text-sm">
-                      Choose minimum <%= Funnel.min_steps() %> steps to evaluate funnel.
+                      Choose minimum {Funnel.min_steps()} steps to evaluate funnel.
                     </span>
                   <% end %>
                 </p>
@@ -196,11 +196,11 @@ defmodule PlausibleWeb.Live.FunnelSettings.Form do
           class="border-dotted border-b border-gray-400 "
           tooltip="Sample calculation for last month"
         >
-          Entering Visitors: <strong><%= @result.entering_visitors %></strong>
+          Entering Visitors: <strong>{@result.entering_visitors}</strong>
         </span>
       </span>
       <span :if={step && @at > 0}>
-        Dropoff: <strong><%= Map.get(step, :dropoff_percentage) %>%</strong>
+        Dropoff: <strong>{Map.get(step, :dropoff_percentage)}%</strong>
       </span>
     </span>
     """

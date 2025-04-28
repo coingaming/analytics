@@ -59,7 +59,7 @@ defmodule PlausibleWeb.Live.Shields.CountryRules do
             title="Maximum number of countries reached"
           >
             <p>
-              You've reached the maximum number of countries you can block (<%= Shields.maximum_country_rules() %>). Please remove one before adding another.
+              You've reached the maximum number of countries you can block ({Shields.maximum_country_rules()}). Please remove one before adding another.
             </p>
           </PlausibleWeb.Components.Generic.notice>
         </div>
@@ -137,7 +137,7 @@ defmodule PlausibleWeb.Live.Shields.CountryRules do
                         class="mr-4 cursor-help border-b border-dotted border-gray-400"
                         title={"Added at #{format_added_at(rule.inserted_at, @site.timezone)} by #{rule.added_by}"}
                       >
-                        <%= country.flag %> <%= country.name %>
+                        {country.flag} {country.name}
                       </span>
                     </div>
                   </td>

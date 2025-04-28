@@ -59,7 +59,7 @@ defmodule PlausibleWeb.Live.Components.Form do
     ~H"""
     <div phx-feedback-for={@name}>
       <.label :if={@label != nil and @label != ""} for={@id}>
-        <%= @label %>
+        {@label}
       </.label>
       <input
         type={@type}
@@ -68,9 +68,9 @@ defmodule PlausibleWeb.Live.Components.Form do
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         {@rest}
       />
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
       <.error :for={msg <- @errors}>
-        <%= msg %>
+        {msg}
       </.error>
     </div>
     """
@@ -88,7 +88,7 @@ defmodule PlausibleWeb.Live.Components.Form do
     <div class="my-4">
       <div>
         <.label for={@id}>
-          <%= @label %>
+          {@label}
         </.label>
       </div>
       <div class="relative mt-1">
@@ -190,7 +190,7 @@ defmodule PlausibleWeb.Live.Components.Form do
     assigns = assign(assigns, :class, final_class)
 
     ~H"""
-    <p class={@class}>Min <%= @minimum %> characters</p>
+    <p class={@class}>Min {@minimum} characters</p>
     """
   end
 
@@ -249,7 +249,7 @@ defmodule PlausibleWeb.Live.Components.Form do
       Password is too weak
     </p>
     <p :if={@feedback} class="text-xs text-gray-500">
-      <%= @feedback %>
+      {@feedback}
     </p>
     """
   end
@@ -263,7 +263,7 @@ defmodule PlausibleWeb.Live.Components.Form do
   def label(assigns) do
     ~H"""
     <label for={@for} class="block font-medium dark:text-gray-100">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </label>
     """
   end
@@ -276,7 +276,7 @@ defmodule PlausibleWeb.Live.Components.Form do
   def error(assigns) do
     ~H"""
     <p class="flex gap-3 text-sm leading-6 text-red-500 phx-no-feedback:hidden">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </p>
     """
   end

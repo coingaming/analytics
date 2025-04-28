@@ -173,7 +173,7 @@ defmodule PlausibleWeb.Live.CSVExport do
     <div class="flex items-center justify-between space-x-2">
       <a href={@href} class="inline-flex items-center">
         <Heroicons.document_text class="w-4 h-4" />
-        <span class="ml-1 text-indigo-500"><%= @export.name %></span>
+        <span class="ml-1 text-indigo-500">{@export.name}</span>
       </a>
       <button
         phx-click="delete"
@@ -187,14 +187,14 @@ defmodule PlausibleWeb.Live.CSVExport do
     <p :if={@export.expires_at} class="text-sm mt-4 text-gray-500">
       Note that this file will expire
       <.hint message={@export.expires_at}>
-        <%= Timex.Format.DateTime.Formatters.Relative.format!(@export.expires_at, "{relative}") %>.
+        {Timex.Format.DateTime.Formatters.Relative.format!(@export.expires_at, "{relative}")}.
       </.hint>
     </p>
 
     <p :if={@storage == "local"} class="text-sm mt-4 text-gray-500">
       Located at
-      <.hint message={@export.path}><%= format_path(@export.path) %></.hint>
-      (<%= format_bytes(@export.size) %>)
+      <.hint message={@export.path}>{format_path(@export.path)}</.hint>
+      ({format_bytes(@export.size)})
     </p>
     """
   end
@@ -202,7 +202,7 @@ defmodule PlausibleWeb.Live.CSVExport do
   defp hint(assigns) do
     ~H"""
     <span title={@message} class="underline cursor-help underline-offset-2 decoration-dashed">
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </span>
     """
   end

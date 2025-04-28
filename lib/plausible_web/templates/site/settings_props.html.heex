@@ -31,10 +31,10 @@
       site={@site}
       conn={@conn}
     >
-      <%= live_render(@conn, PlausibleWeb.Live.PropsSettings,
+      {live_render(@conn, PlausibleWeb.Live.PropsSettings,
         id: "props-form",
         session: %{"site_id" => @site.id, "domain" => @site.domain}
-      ) %>
+      )}
     </PlausibleWeb.Components.Site.Feature.toggle>
   </div>
 </section>

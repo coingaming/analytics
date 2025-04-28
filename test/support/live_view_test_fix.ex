@@ -32,10 +32,6 @@ defmodule Plausible.LiveViewTest do
     end
   end
 
-  def __render_component__(endpoint, component, assigns, opts) when is_atom(component) do
-    Phoenix.LiveViewTest.__render_component__(endpoint, %{module: component}, assigns, opts)
-  end
-
   def __render_component__(endpoint, component, assigns, opts) do
     Phoenix.LiveViewTest.__render_component__(endpoint, component, assigns, opts)
   end

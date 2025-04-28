@@ -47,7 +47,7 @@ defmodule PlausibleWeb.Live.PropsSettings.List do
         <ul id="allowed-props" class="mt-12 divide-gray-200 divide-y dark:divide-gray-600">
           <li :for={{prop, index} <- Enum.with_index(@props)} id={"prop-#{index}"} class="flex py-4">
             <span class="flex-1 truncate font-medium text-sm text-gray-800 dark:text-gray-200">
-              <%= prop %>
+              {prop}
             </span>
             <button
               id={"disallow-prop-#{prop}"}
