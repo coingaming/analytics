@@ -28,10 +28,10 @@ defmodule PlausibleWeb.Components.FirstDashboardLaunchBanner do
       x-bind:class="! show ? 'hidden' : ''"
       x-init={x_init(@site)}
     >
-      <%= link("Team members, email reports and GA import. Explore more →",
+      {link("Team members, email reports and GA import. Explore more →",
         to: "/#{URI.encode_www_form(@site.domain)}/settings/email-reports",
         class: "py-2 block"
-      ) %>
+      )}
     </div>
     """
   end

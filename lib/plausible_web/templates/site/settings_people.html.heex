@@ -13,13 +13,13 @@
         <li class="py-4">
           <div class="flex items-center space-x-4">
             <div class="flex-shrink-0">
-              <%= img_tag(Plausible.Auth.User.profile_img_url(membership.user),
+              {img_tag(Plausible.Auth.User.profile_img_url(membership.user),
                 class: "h-8 w-8 rounded-full"
-              ) %>
+              )}
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 dark:text-gray-50 truncate">
-                <%= membership.user.name %>
+                {membership.user.name}
                 <PlausibleWeb.Components.Generic.styled_link
                   :if={ee?() and Plausible.Auth.is_super_admin?(@current_user)}
                   new_tab={true}
@@ -29,7 +29,7 @@
                 </PlausibleWeb.Components.Generic.styled_link>
               </p>
               <p class="text-sm text-gray-400 truncate">
-                <%= membership.user.email %>
+                {membership.user.email}
               </p>
             </div>
 
@@ -38,7 +38,7 @@
                 @click="open = !open"
                 class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 dark:border-gray-500 text-sm leading-5 font-medium rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               >
-                <%= membership.role |> Atom.to_string() |> String.capitalize() %>
+                {membership.role |> Atom.to_string() |> String.capitalize()}
                 <svg
                   class="w-4 h-4 pt-px ml-1"
                   fill="currentColor"
@@ -94,10 +94,10 @@
                       class="select-none hover:bg-gray-100 dark:hover:bg-gray-900 text-red-600"
                       role="option"
                     >
-                      <%= link("Transfer ownership →",
+                      {link("Transfer ownership →",
                         to: Routes.membership_path(@conn, :transfer_ownership_form, @site.domain),
                         class: "inline-block w-full p-4 text-sm text-red-600 font-medium"
-                      ) %>
+                      )}
                     </li>
                   <% end %>
                 <% else %>
@@ -203,13 +203,13 @@
                   <%= for invitation <- @site.invitations do %>
                     <tr class="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-850 dark:even:bg-gray-825">
                       <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                        <%= invitation.email %>
+                        {invitation.email}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                        <%= invitation.role |> Atom.to_string() |> String.capitalize() %>
+                        {invitation.role |> Atom.to_string() |> String.capitalize()}
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <%= link("Remove",
+                        {link("Remove",
                           to:
                             Routes.invitation_path(
                               @conn,
@@ -219,7 +219,7 @@
                             ),
                           method: :delete,
                           class: "text-red-600 hover:text-red-900"
-                        ) %>
+                        )}
                       </td>
                     </tr>
                   <% end %>

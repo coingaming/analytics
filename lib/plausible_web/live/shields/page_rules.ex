@@ -64,7 +64,7 @@ defmodule PlausibleWeb.Live.Shields.PageRules do
             title="Maximum number of pages reached"
           >
             <p>
-              You've reached the maximum number of pages you can block (<%= Shields.maximum_page_rules() %>). Please remove one before adding another.
+              You've reached the maximum number of pages you can block ({Shields.maximum_page_rules()}). Please remove one before adding another.
             </p>
           </PlausibleWeb.Components.Generic.notice>
         </div>
@@ -89,7 +89,7 @@ defmodule PlausibleWeb.Live.Shields.PageRules do
               creatable
             />
 
-            <%= error_tag(f, :page_path) %>
+            {error_tag(f, :page_path)}
 
             <p class="text-sm mt-2 text-gray-500 dark:text-gray-200">
               You can use a wildcard (<code>*</code>) to match multiple pages. For example,
@@ -145,7 +145,7 @@ defmodule PlausibleWeb.Live.Shields.PageRules do
                         class="mr-4 cursor-help border-b border-dotted border-gray-400 text-ellipsis overflow-hidden"
                         title={"#{rule.page_path}\n\nAdded at #{format_added_at(rule.inserted_at, @site.timezone)} by #{rule.added_by}"}
                       >
-                        <%= rule.page_path %>
+                        {rule.page_path}
                       </span>
                     </div>
                   </td>

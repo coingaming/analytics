@@ -56,7 +56,7 @@ defmodule PlausibleWeb.Live.Components.Verification do
           <span :if={not @finished?}>Verifying your integration</span>
 
           <span :if={@finished? and not @success? and @interpretation}>
-            <%= List.first(@interpretation.errors) %>
+            {List.first(@interpretation.errors)}
           </span>
         </h3>
         <p :if={@finished? and @success? and @modal?} id="progress" class="mt-2">
@@ -65,14 +65,14 @@ defmodule PlausibleWeb.Live.Components.Verification do
         <p :if={@finished? and @success? and not @modal?} id="progress" class="mt-2 animate-pulse">
           Your integration is working. Awaiting your first pageview.
         </p>
-        <p :if={not @finished?} class="mt-2 animate-pulse" id="progress"><%= @message %></p>
+        <p :if={not @finished?} class="mt-2 animate-pulse" id="progress">{@message}</p>
 
         <p
           :if={@finished? and not @success? and @interpretation}
           class="mt-2 text-ellipsis overflow-hidden"
           id="recommendation"
         >
-          <span><%= List.first(@interpretation.recommendations).text %>.&nbsp;</span>
+          <span>{List.first(@interpretation.recommendations).text}.&nbsp;</span>
           <.styled_link href={List.first(@interpretation.recommendations).url} new_tab={true}>
             Learn more
           </.styled_link>

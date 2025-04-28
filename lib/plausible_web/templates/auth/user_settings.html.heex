@@ -19,7 +19,7 @@
               subscription_colors(@subscription.status)
             ]}
           >
-            <%= present_subscription_status(@subscription.status) %>
+            {present_subscription_status(@subscription.status)}
           </span>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <h4 class="font-black dark:text-gray-100">Next bill amount</h4>
           <%= if Plausible.Billing.Subscription.Status.in?(@subscription, [Plausible.Billing.Subscription.Status.active(), Plausible.Billing.Subscription.Status.past_due()]) do %>
             <div class="py-2 text-xl font-medium dark:text-gray-100">
-              <%= PlausibleWeb.BillingView.present_currency(@subscription.currency_code) %><%= @subscription.next_bill_amount %>
+              {PlausibleWeb.BillingView.present_currency(@subscription.currency_code)}{@subscription.next_bill_amount}
             </div>
             <.styled_link :if={@subscription.update_url} href={@subscription.update_url}>
               Update billing info
@@ -60,10 +60,10 @@
 
           <%= if @subscription && @subscription.next_bill_date && Plausible.Billing.Subscription.Status.in?(@subscription, [Plausible.Billing.Subscription.Status.active(), Plausible.Billing.Subscription.Status.past_due()]) do %>
             <div class="py-2 text-xl font-medium dark:text-gray-100">
-              <%= Timex.format!(@subscription.next_bill_date, "{Mshort} {D}, {YYYY}") %>
+              {Timex.format!(@subscription.next_bill_date, "{Mshort} {D}, {YYYY}")}
             </div>
             <span class="text-gray-600 dark:text-gray-400">
-              (<%= subscription_interval(@subscription) %> billing)
+              ({subscription_interval(@subscription)} billing)
             </span>
           <% else %>
             <div class="py-2 text-xl font-medium dark:text-gray-100">---</div>
@@ -97,11 +97,11 @@
       <%= cond do %>
         <% Plausible.Billing.Subscriptions.resumable?(@subscription) && @subscription.cancel_url -> %>
           <div class="mt-8">
-            <%= link("Cancel my subscription",
+            {link("Cancel my subscription",
               to: @subscription.cancel_url,
               class:
                 "inline-block mt-4 px-4 py-2 border border-gray-300 dark:border-gray-500 text-sm leading-5 font-medium rounded-md text-red-700 bg-white dark:bg-gray-800 hover:text-red-500 focus:outline-none focus:border-blue-300 focus:ring active:text-red-800 active:bg-gray-50 transition ease-in-out duration-150"
-            ) %>
+            )}
           </div>
         <% true -> %>
           <div class="mt-8">
@@ -154,13 +154,13 @@
               <tbody class={["divide-y divide-gray-200"]}>
                 <tr x-show={"showAll || #{idx} < 12"}>
                   <td class="py-4 text-sm text-gray-800 dark:text-gray-200 font-medium">
-                    <%= invoice.date %>
+                    {invoice.date}
                   </td>
                   <td class="py-4 text-sm text-gray-800 dark:text-gray-200">
-                    <%= invoice.currency <> invoice.amount %>
+                    {invoice.currency <> invoice.amount}
                   </td>
                   <td class="py-4 text-sm text-indigo-500">
-                    <%= link("Link", to: invoice.url, target: "_blank") %>
+                    {link("Link", to: invoice.url, target: "_blank")}
                   </td>
                 </tr>
                 <tr :if={idx == 12 && length(invoice_list) > 12} x-show="!showAll">
@@ -188,13 +188,13 @@
 
     <%= form_for @settings_changeset, "/settings", [class: "max-w-sm"], fn f -> %>
       <div class="col-span-4 sm:col-span-2">
-        <%= label(f, :theme, "Theme Selection",
+        {label(f, :theme, "Theme Selection",
           class: "block text-sm font-medium leading-5 text-gray-700 dark:text-gray-300"
-        ) %>
-        <%= select(f, :theme, Plausible.Themes.options(),
+        )}
+        {select(f, :theme, Plausible.Themes.options(),
           class:
             "dark:bg-gray-900  mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:text-gray-100 cursor-pointer"
-        ) %>
+        )}
       </div>
 
       <PlausibleWeb.Components.Generic.button type="submit" class="mt-4">
@@ -249,13 +249,13 @@
 
     <%= form_for @settings_changeset, "/settings#change-account-name", [class: "max-w-sm"], fn f -> %>
       <div class="my-4">
-        <%= label(f, :name, class: "block text-sm font-medium text-gray-700 dark:text-gray-300") %>
+        {label(f, :name, class: "block text-sm font-medium text-gray-700 dark:text-gray-300")}
         <div class="mt-1">
-          <%= text_input(f, :name,
+          {text_input(f, :name,
             class:
               "shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:bg-gray-800"
-          ) %>
-          <%= error_tag(f, :name) %>
+          )}
+          {error_tag(f, :name)}
         </div>
       </div>
       <PlausibleWeb.Components.Generic.button type="submit" class="mt-4">
@@ -273,48 +273,48 @@
 
     <%= form_for @email_changeset, "/settings/email#change-email-address", [class: "max-w-sm"], fn f -> %>
       <div class="my-4">
-        <%= label(f, :password, "Account password",
+        {label(f, :password, "Account password",
           class: "block text-sm font-medium text-gray-700 dark:text-gray-300"
-        ) %>
+        )}
         <div class="mt-1">
-          <%= password_input(f, :password,
+          {password_input(f, :password,
             class:
               "shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:bg-gray-800"
-          ) %>
-          <%= error_tag(f, :password) %>
+          )}
+          {error_tag(f, :password)}
         </div>
       </div>
       <div class="my-4">
-        <%= label(f, :current_email, "Current email",
+        {label(f, :current_email, "Current email",
           class: "block text-sm font-medium text-gray-700 dark:text-gray-300"
-        ) %>
+        )}
         <div class="mt-1">
-          <%= email_input(f, :current_email,
+          {email_input(f, :current_email,
             readonly: true,
             value: f.data.email,
             class:
               "shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:bg-gray-800 bg-gray-100"
-          ) %>
+          )}
         </div>
       </div>
       <div class="my-4">
-        <%= label(f, :email, "New email",
+        {label(f, :email, "New email",
           class: "block text-sm font-medium text-gray-700 dark:text-gray-300"
-        ) %>
+        )}
         <div class="mt-1">
-          <%= email_input(f, :email,
+          {email_input(f, :email,
             value: f.params["email"],
             class:
               "shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md"
-          ) %>
-          <%= error_tag(f, :email) %>
+          )}
+          {error_tag(f, :email)}
         </div>
       </div>
 
-      <%= submit("Change my email",
+      {submit("Change my email",
         class:
           "inline-block mt-4 px-4 py-2 border border-gray-300 dark:border-gray-500 text-sm leading-5 font-medium rounded-md text-red-700 bg-white dark:bg-gray-800 hover:text-red-500 dark:hover:text-red-400 focus:outline-none focus:border-blue-300 focus:ring active:text-red-800 active:bg-gray-50 transition ease-in-out duration-150"
-      ) %>
+      )}
     <% end %>
   </div>
 
@@ -360,19 +360,19 @@
                   <%= for api_key <- @user.api_keys do %>
                     <tr class="bg-white dark:bg-gray-800">
                       <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
-                        <%= api_key.name %>
+                        {api_key.name}
                       </td>
                       <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-100 whitespace-nowrap">
-                        <%= api_key.key_prefix %><%= String.duplicate("*", 32 - 6) %>
+                        {api_key.key_prefix}{String.duplicate("*", 32 - 6)}
                       </td>
                       <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                        <%= button("Revoke",
+                        {button("Revoke",
                           to: "/settings/api-keys/#{api_key.id}",
                           class: "text-red-600 hover:text-red-900",
                           method: :delete,
                           "data-confirm":
                             "Are you sure you want to revoke this key? This action cannot be reversed."
-                        ) %>
+                        )}
                       </td>
                     </tr>
                   <% end %>
@@ -412,7 +412,7 @@
         Your account cannot be deleted because you have an active subscription. If you want to delete your account, please cancel your subscription first.
       </p>
     <% else %>
-      <%= link("Delete my account",
+      {link("Delete my account",
         to: "/me",
         class:
           "inline-block mt-4 px-4 py-2 border border-gray-300 dark:border-gray-500 text-sm leading-5 font-medium rounded-md text-red-700 bg-white dark:bg-gray-800 hover:text-red-500 dark:hover:text-red-400 focus:outline-none focus:border-blue-300 focus:ring active:text-red-800 active:bg-gray-50 transition ease-in-out duration-150",
@@ -421,7 +421,7 @@
           confirm:
             "Deleting your account will also delete all the sites and data that you own. This action cannot be reversed. Are you sure?"
         ]
-      ) %>
+      )}
     <% end %>
   </div>
 
@@ -451,13 +451,13 @@
     </div>
 
     <div class="mt-3">
-      <%= password_input(f, :password,
+      {password_input(f, :password,
         id: "disable_2fa_password",
         placeholder: "Enter password",
         "x-ref": "disable2FAPassword",
         class:
           "shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:bg-gray-800"
-      ) %>
+      )}
     </div>
   </PlausibleWeb.Components.TwoFactor.modal>
 
@@ -500,13 +500,13 @@
     </div>
 
     <div class="mt-3 w-full">
-      <%= password_input(f, :password,
+      {password_input(f, :password,
         id: "regenerate_2fa_password",
         placeholder: "Enter password",
         "x-ref": "regenerate2FAPassword",
         class:
           "w-full shadow-sm dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 dark:border-gray-500 rounded-md dark:bg-gray-800"
-      ) %>
+      )}
     </div>
   </PlausibleWeb.Components.TwoFactor.modal>
 </div>

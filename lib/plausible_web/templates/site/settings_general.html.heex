@@ -10,15 +10,15 @@
     </header>
     <div class="grid grid-cols-4 gap-6">
       <div class="col-span-4 sm:col-span-2">
-        <%= label(nil, "Domain",
+        {label(nil, "Domain",
           class: "block text-sm font-medium leading-5 text-gray-700 dark:text-gray-300"
-        ) %>
-        <%= text_input(nil, :domain,
+        )}
+        {text_input(nil, :domain,
           value: @site.domain,
           disabled: "disabled",
           class:
             "dark:bg-gray-900 w-full mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:text-gray-100 text-gray-500"
-        ) %>
+        )}
       </div>
     </div>
     <div>
@@ -46,13 +46,13 @@
       </header>
       <div class="grid grid-cols-4 gap-6">
         <div class="col-span-4 sm:col-span-2">
-          <%= label(f, :timezone, "Reporting Timezone",
+          {label(f, :timezone, "Reporting Timezone",
             class: "block text-sm font-medium leading-5 text-gray-700 dark:text-gray-300"
-          ) %>
-          <%= select(f, :timezone, Plausible.Timezones.options(),
+          )}
+          {select(f, :timezone, Plausible.Timezones.options(),
             class:
               "dark:bg-gray-900 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:text-gray-100 cursor-pointer"
-          ) %>
+          )}
         </div>
       </div>
       <PlausibleWeb.Components.Generic.button type="submit">
@@ -77,13 +77,13 @@
   <div class="my-4">
     <div class="relative">
       <code>
-        <%= textarea(f, :domain,
+        {textarea(f, :domain,
           id: "snippet_code",
           class:
             "transition overflow-hidden bg-gray-100 dark:bg-gray-900 outline-none appearance-none border border-transparent rounded w-full p-2 pr-6 text-gray-700 dark:text-gray-300 leading-normal focus:outline-none focus:bg-white focus:border-gray-300 dark:focus:border-gray-500 text-xs mt-2 resize-none",
           value: render_snippet(@site, ["live-view"]),
           rows: 2
-        ) %>
+        )}
       </code>
       <a
         onclick="var textarea = document.getElementById('snippet_code'); textarea.focus(); textarea.select(); document.execCommand('copy');"
@@ -110,14 +110,14 @@
     </div>
 
     <div :if={Plausible.Verification.enabled?(@current_user)}>
-      <%= live_render(@conn, PlausibleWeb.Live.Verification,
+      {live_render(@conn, PlausibleWeb.Live.Verification,
         session: %{
           "site_id" => @site.id,
           "domain" => @site.domain,
           "modal?" => true,
           "slowdown" => @conn.private[:verification_slowdown]
         }
-      ) %>
+      )}
     </div>
   </div>
 <% end %>

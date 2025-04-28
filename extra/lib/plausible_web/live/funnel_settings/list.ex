@@ -49,9 +49,9 @@ defmodule PlausibleWeb.Live.FunnelSettings.List do
           <%= for funnel <- @funnels do %>
             <div class="border-b border-gray-300 dark:border-gray-500 py-3 flex justify-between">
               <span class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                <%= funnel.name %>
+                {funnel.name}
                 <span class="text-sm text-gray-400 font-normal block mt-1">
-                  <%= funnel.steps_count %>-step funnel
+                  {funnel.steps_count}-step funnel
                 </span>
               </span>
               <button

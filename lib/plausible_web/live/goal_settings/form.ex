@@ -60,7 +60,7 @@ defmodule PlausibleWeb.Live.GoalSettings.Form do
           x-show="tabSelectionInProgress"
         />
 
-        <h2 class="text-xl font-black dark:text-gray-100">Add Goal for <%= @domain %></h2>
+        <h2 class="text-xl font-black dark:text-gray-100">Add Goal for {@domain}</h2>
 
         <.tabs selected_tab={@selected_tab} myself={@myself} />
 
@@ -99,7 +99,7 @@ defmodule PlausibleWeb.Live.GoalSettings.Form do
           phx-target={@myself}
         >
           <span :if={@event_name_options_count > 1}>
-            Already sending custom events? We've found <%= @event_name_options_count %> custom events from the last 6 months that are not yet configured as goals. Click here to add them.
+            Already sending custom events? We've found {@event_name_options_count} custom events from the last 6 months that are not yet configured as goals. Click here to add them.
           </span>
           <span :if={@event_name_options_count == 1}>
             Already sending custom events? We've found 1 custom event from the last 6 months that is not yet configured as a goal. Click here to add it.
@@ -135,9 +135,9 @@ defmodule PlausibleWeb.Live.GoalSettings.Form do
       />
 
       <.error :for={{msg, opts} <- @f[:page_path].errors}>
-        <%= Enum.reduce(opts, msg, fn {key, value}, acc ->
+        {Enum.reduce(opts, msg, fn {key, value}, acc ->
           String.replace(acc, "%{#{key}}", fn _ -> to_string(value) end)
-        end) %>
+        end)}
       </.error>
     </div>
     """
@@ -263,9 +263,9 @@ defmodule PlausibleWeb.Live.GoalSettings.Form do
         </div>
 
         <.error :for={{msg, opts} <- @f[:event_name].errors}>
-          <%= Enum.reduce(opts, msg, fn {key, value}, acc ->
+          {Enum.reduce(opts, msg, fn {key, value}, acc ->
             String.replace(acc, "%{#{key}}", fn _ -> to_string(value) end)
-          end) %>
+          end)}
         </.error>
       </div>
     </div>

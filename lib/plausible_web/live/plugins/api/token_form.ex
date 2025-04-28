@@ -58,7 +58,7 @@ defmodule PlausibleWeb.Live.Plugins.API.TokenForm do
           phx-click-away="cancel-add-token"
         >
           <h2 class="text-xl font-black dark:text-gray-100 mb-8">
-            Add Plugin Token for <%= @domain %>
+            Add Plugin Token for {@domain}
           </h2>
 
           <.input

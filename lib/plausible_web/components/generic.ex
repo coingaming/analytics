@@ -55,7 +55,7 @@ defmodule PlausibleWeb.Components.Generic do
       ]}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </button>
     """
   end
@@ -101,7 +101,7 @@ defmodule PlausibleWeb.Components.Generic do
       ]}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </.link>
     """
   end
@@ -154,11 +154,11 @@ defmodule PlausibleWeb.Components.Generic do
           </div>
           <div class={["w-full", @title && "ml-3"]}>
             <h3 :if={@title} class={"text-#{@size} font-medium #{@theme.title_text} mb-2"}>
-              <%= @title %>
+              {@title}
             </h3>
             <div class={"text-#{@size} #{@theme.body_text}"}>
               <p>
-                <%= render_slot(@inner_block) %>
+                {render_slot(@inner_block)}
               </p>
             </div>
           </div>
@@ -191,7 +191,7 @@ defmodule PlausibleWeb.Components.Generic do
       class={"text-indigo-600 hover:text-indigo-700 dark:text-indigo-500 dark:hover:text-indigo-600 " <> @class}
       {@rest}
     >
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </.unstyled_link>
     """
   end
@@ -212,7 +212,7 @@ defmodule PlausibleWeb.Components.Generic do
       x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
     >
       <button x-ref="button" x-on:click="toggle()" type="button" class={List.first(@button).class}>
-        <%= render_slot(List.first(@button)) %>
+        {render_slot(List.first(@button))}
       </button>
       <div
         x-ref="panel"
@@ -227,7 +227,7 @@ defmodule PlausibleWeb.Components.Generic do
         style="display: none;"
         class={List.first(@panel).class}
       >
-        <%= render_slot(List.first(@panel)) %>
+        {render_slot(List.first(@panel))}
       </div>
     </div>
     """
@@ -253,7 +253,7 @@ defmodule PlausibleWeb.Components.Generic do
 
     ~H"""
     <.unstyled_link new_tab={@new_tab} href={@href} x-on:click="close()" class={@class} {@rest}>
-      <%= render_slot(@inner_block) %>
+      {render_slot(@inner_block)}
     </.unstyled_link>
     """
   end
@@ -281,14 +281,14 @@ defmodule PlausibleWeb.Components.Generic do
         rel="noopener noreferrer"
         {@rest}
       >
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
         <Heroicons.arrow_top_right_on_square class={["opacity-60", @icon_class]} />
       </.link>
       """
     else
       ~H"""
       <.link class={@class} href={@href} {@rest}>
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
       </.link>
       """
     end
@@ -333,14 +333,14 @@ defmodule PlausibleWeb.Components.Generic do
         x-on:mouseout="hovered = false"
         class={["cursor-pointer flex align-items-center", @class]}
       >
-        <%= render_slot(@inner_block) %>
+        {render_slot(@inner_block)}
         <Heroicons.information_circle class="w-5 h-5 ml-2" />
       </p>
       <span
         x-show="hovered || sticky"
         class="bg-gray-900 pointer-events-none absolute bottom-10 margin-x-auto left-10 right-10 transition-opacity p-4 rounded text-sm text-white"
       >
-        <%= render_slot(List.first(@tooltip_content)) %>
+        {render_slot(List.first(@tooltip_content))}
       </span>
     </div>
     """

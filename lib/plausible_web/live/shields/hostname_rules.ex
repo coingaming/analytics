@@ -64,7 +64,7 @@ defmodule PlausibleWeb.Live.Shields.HostnameRules do
             title="Maximum number of hostnames reached"
           >
             <p>
-              You've reached the maximum number of hostnames you can block (<%= Shields.maximum_hostname_rules() %>). Please remove one before adding another.
+              You've reached the maximum number of hostnames you can block ({Shields.maximum_hostname_rules()}). Please remove one before adding another.
             </p>
           </PlausibleWeb.Components.Generic.notice>
         </div>
@@ -89,11 +89,11 @@ defmodule PlausibleWeb.Live.Shields.HostnameRules do
               creatable
             />
 
-            <%= error_tag(f, :hostname) %>
+            {error_tag(f, :hostname)}
 
             <p class="text-sm mt-2 text-gray-500 dark:text-gray-200">
               You can use a wildcard (<code>*</code>) to match multiple hostnames. For example,
-              <code>*.<%= @site.domain %></code>
+              <code>*.{@site.domain}</code>
               will match all subdomains.<br /><br />
 
               <%= if @hostname_rules_count >= 1 do %>
@@ -153,7 +153,7 @@ defmodule PlausibleWeb.Live.Shields.HostnameRules do
                         class="mr-4 cursor-help border-b border-dotted border-gray-400 text-ellipsis overflow-hidden"
                         title={"#{rule.hostname}\n\nAdded at #{format_added_at(rule.inserted_at, @site.timezone)} by #{rule.added_by}"}
                       >
-                        <%= rule.hostname %>
+                        {rule.hostname}
                       </span>
                     </div>
                   </td>

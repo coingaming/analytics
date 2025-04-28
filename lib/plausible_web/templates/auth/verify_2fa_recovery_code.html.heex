@@ -13,7 +13,7 @@
       Can't access your authenticator application? Enter a recovery code instead.
       <div class="mt-6">
         <div>
-          <%= text_input(f, :recovery_code,
+          {text_input(f, :recovery_code,
             value: "",
             autocomplete: "off",
             class:
@@ -22,7 +22,7 @@
             oninvalid: "document.getElementById('use-code-button').disabled = false",
             placeholder: "Enter recovery code",
             required: "required"
-          ) %>
+          )}
         </div>
         <.button
           id="use-code-button"

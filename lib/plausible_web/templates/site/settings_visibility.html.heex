@@ -17,10 +17,10 @@
         </span>
       <% end %>
       <span class="text-sm font-medium text-gray-900 leading-5 dark:text-gray-100">
-        Stats are publicly available on <%= link(PlausibleWeb.StatsView.pretty_stats_url(@site),
+        Stats are publicly available on {link(PlausibleWeb.StatsView.pretty_stats_url(@site),
           to: Routes.stats_path(@conn, :stats, @site.domain, []),
           class: "text-indigo-500"
-        ) %>
+        )}
       </span>
     </div>
   <% else %>
@@ -30,10 +30,10 @@
         </span>
       <% end %>
       <span class="text-sm font-medium text-gray-900 leading-5 dark:text-gray-100">
-        Make stats publicly available on <%= link(PlausibleWeb.StatsView.pretty_stats_url(@site),
+        Make stats publicly available on {link(PlausibleWeb.StatsView.pretty_stats_url(@site),
           to: Routes.stats_path(@conn, :stats, @site.domain, []),
           class: "text-indigo-500"
-        ) %>
+        )}
       </span>
     </div>
   <% end %>
@@ -56,7 +56,7 @@
           for={link.slug}
           class="flex content-center text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          <%= link.name %>
+          {link.name}
           <%= if link.password_hash do %>
             <svg
               class="ml-1 w-4 h-4 mt-px"

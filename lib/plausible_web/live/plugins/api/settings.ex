@@ -37,7 +37,7 @@ defmodule PlausibleWeb.Live.Plugins.API.Settings do
     <.flash_messages flash={@flash} />
 
     <%= if @add_token? do %>
-      <%= live_render(
+      {live_render(
         @socket,
         PlausibleWeb.Live.Plugins.API.TokenForm,
         id: "token-form",
@@ -47,7 +47,7 @@ defmodule PlausibleWeb.Live.Plugins.API.Settings do
           "token_description" => @token_description,
           "rendered_by" => self()
         }
-      ) %>
+      )}
     <% end %>
 
     <div class="mt-4">
@@ -94,14 +94,14 @@ defmodule PlausibleWeb.Live.Plugins.API.Settings do
               <tr class="bg-white dark:bg-gray-800">
                 <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
                   <span class="token-description">
-                    <%= token.description %>
+                    {token.description}
                   </span>
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-100 font-mono">
-                  **********<%= token.hint %>
+                  **********{token.hint}
                 </td>
                 <td class="px-6 py-4 text-sm font-normal whitespace-nowrap">
-                  <%= Plausible.Plugins.API.Token.last_used_humanize(token) %>
+                  {Plausible.Plugins.API.Token.last_used_humanize(token)}
                 </td>
                 <td class="px-6 py-4 text-sm font-medium text-right">
                   <button
