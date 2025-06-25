@@ -70,6 +70,7 @@ defmodule Plausible.MixProject do
       {:bcrypt_elixir, "~> 3.0"},
       {:bypass, "~> 2.1", only: [:dev, :test, :ce_test]},
       {:ecto_ch, "~> 0.3.5"},
+      {:ch, path: "ch", override: true},
       {:cloak, "~> 1.1"},
       {:cloak_ecto, "~> 1.2"},
       {:combination, "~> 0.0.3"},
