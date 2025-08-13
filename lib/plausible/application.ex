@@ -7,6 +7,8 @@ defmodule Plausible.Application do
   require Logger
 
   def start(_type, _args) do
+    set_logger_level_for_modules()
+
     on_ee(do: Plausible.License.ensure_valid_license())
     on_ce(do: :inet_db.set_tcp_module(:happy_tcp))
 
@@ -220,5 +222,12 @@ defmodule Plausible.Application do
       end)
 
     [{impl_mod, Keyword.fetch!(opts, :adapter_opts)} | warmer_specs]
+  end
+
+  defp set_logger_level_for_modules do
+    Logger.put_module_level(Phoenix.Endpoint.Cowboy2Handler, :error)
+    Logger.put_module_level(Plug.Cowboy.Handler, :error)
+    Logger.put_module_level(Phoenix.Logger, :error)
+    Logger.put_module_level(Plug.Logger, :error)
   end
 end
