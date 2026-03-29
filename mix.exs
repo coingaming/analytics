@@ -91,6 +91,7 @@ defmodule Plausible.MixProject do
       {:fun_with_flags_ui, "~> 1.0"},
       {:locus, "~> 2.3"},
       {:gen_cycle, "~> 1.0.4"},
+      {:gen_smtp, "~> 1.3.0", override: true},
       {:hackney, "~> 1.8"},
       {:jason, "~> 1.3"},
       {:kaffy, "~> 0.10.2", only: [:dev, :test, :staging, :prod]},
